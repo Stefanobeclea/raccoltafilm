@@ -1,6 +1,6 @@
 package it.prova.raccoltafilm.service;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -191,6 +191,25 @@ public class UtenteServiceImpl implements UtenteService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 
+	}
+
+	@Override
+	public List<Utente> findByExample(Utente example) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return utenteDAO.findByExample(example);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
 	}
 
 }
