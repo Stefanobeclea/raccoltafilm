@@ -26,6 +26,9 @@ public class ExecuteListRegistaServlet extends HttpServlet {
 			if(StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("SUCCESS"))
 				request.setAttribute("successMessage", "Operazione effettuata con successo");
 			
+			if(StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("ASSOCIATO"))
+				request.setAttribute("errorMessage", "Operazione negata. Regista associato a uno o piu film.");
+			
 			request.setAttribute("registi_list_attribute",
 					MyServiceFactory.getRegistaServiceInstance().listAllElements());
 		} catch (Exception e) {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.raccoltafilm.exceptions.ElementNotFoundException;
+import it.prova.raccoltafilm.exceptions.RegistaAssociatoException;
 import it.prova.raccoltafilm.service.MyServiceFactory;
 
 
@@ -28,7 +29,7 @@ public class ExecuteDeleteRegistaServlet extends HttpServlet {
 
 		if (!NumberUtils.isCreatable(idRegistaParam)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.(id)");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
 		}
@@ -44,14 +45,16 @@ public class ExecuteDeleteRegistaServlet extends HttpServlet {
 		} catch (ElementNotFoundException e) {
 			request.getRequestDispatcher("ExecuteListRegistaServlet?operationResult=NOT_FOUND").forward(request, response);
 			return;
-		} catch (Exception e) {
+		} catch (RegistaAssociatoException e) {
+			request.getRequestDispatcher("ExecuteListRegistaServlet?operationResult=ASSOCIATO").forward(request, response);
+			return;
+		}catch (Exception e) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("home").forward(request, response);
 			return;
-		}
-
+		} 
 		response.sendRedirect("ExecuteListRegistaServlet?operationResult=SUCCESS");
 	}
 

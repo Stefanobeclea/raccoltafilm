@@ -28,27 +28,27 @@
 					    <div class='card-body'>
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Id:</dt>
-							  <dd class="col-sm-9">${show_regista_attr.id}</dd>
+							  <dd class="col-sm-9">${delete_regista_attr.id}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Nome:</dt>
-							  <dd class="col-sm-9">${show_regista_attr.nome}</dd>
+							  <dd class="col-sm-9">${delete_regista_attr.nome}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Cognome:</dt>
-							  <dd class="col-sm-9">${show_regista_attr.cognome}</dd>
+							  <dd class="col-sm-9">${delete_regista_attr.cognome}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Nickname:</dt>
-							  <dd class="col-sm-9">${show_regista_attr.nickName}</dd>
+							  <dd class="col-sm-9">${delete_regista_attr.nickName}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data Di Nascita:</dt>
-							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${show_regista_attr.dataDiNascita}" /></dd>
+							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${delete_regista_attr.dataDiNascita}" /></dd>
 					    	</dl>
 					    	
 					    	
