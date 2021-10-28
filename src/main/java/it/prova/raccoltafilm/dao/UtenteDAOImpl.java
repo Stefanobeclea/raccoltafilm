@@ -85,5 +85,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 		query.setParameter("statoUtente", StatoUtente.ATTIVO);
 		return query.getResultStream().findFirst();
 	}
+	
+	
 
 }
