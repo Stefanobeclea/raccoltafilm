@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import it.prova.raccoltafilm.dao.RuoloDAO;
 import it.prova.raccoltafilm.dao.UtenteDAO;
 import it.prova.raccoltafilm.model.Ruolo;
 import it.prova.raccoltafilm.model.Utente;
@@ -13,10 +14,16 @@ import it.prova.raccoltafilm.web.listener.LocalEntityManagerFactoryListener;
 public class UtenteServiceImpl implements UtenteService {
 
 	private UtenteDAO utenteDAO;
+	private RuoloDAO ruoloDAO;
 
 	@Override
 	public void setUtenteDAO(UtenteDAO utenteDAO) {
 		this.utenteDAO = utenteDAO;
+	}
+	
+	@Override
+	public void setRuoloDAO(RuoloDAO ruoloDAO) {
+		this.ruoloDAO = ruoloDAO;
 	}
 
 	@Override
@@ -99,6 +106,36 @@ public class UtenteServiceImpl implements UtenteService {
 
 			// eseguo quello che realmente devo fare
 			utenteDAO.insert(utenteInstance);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public void inserisciNuovoUtenteConRuoli(Utente utenteInstance, String[] ruoli) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+			ruoloDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			utenteDAO.insert(utenteInstance);
+			
+			for (String ruoloItem : ruoli) {
+				utenteInstance.getRuoli().add(ruoloDAO.findOne(Long.parseLong(ruoloItem)).orElse(null));	
+			}
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {

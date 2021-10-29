@@ -111,8 +111,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 			paramaterMap.put("username", "%" + example.getUsername() + "%");
 		}
 		if (example.getDateCreated() != null) {
-			whereClauses.add("u.dataDiNascita >= :dataDiNascita ");
-			paramaterMap.put("dataDiNascita", example.getDateCreated());
+			whereClauses.add("u.dateCreated >= :dateCreated ");
+			paramaterMap.put("dateCreated", example.getDateCreated());
 		}
 
 		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");

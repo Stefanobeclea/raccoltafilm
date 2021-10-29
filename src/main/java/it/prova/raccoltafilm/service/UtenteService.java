@@ -2,6 +2,7 @@ package it.prova.raccoltafilm.service;
 
 import java.util.List;
 
+import it.prova.raccoltafilm.dao.RuoloDAO;
 import it.prova.raccoltafilm.dao.UtenteDAO;
 import it.prova.raccoltafilm.model.Ruolo;
 import it.prova.raccoltafilm.model.Utente;
@@ -26,8 +27,11 @@ public interface UtenteService  {
 	
 	public List<Utente> findByExample(Utente example) throws Exception;
 	
+	public void inserisciNuovoUtenteConRuoli(Utente utenteInstance, String[] ruoli) throws Exception;
+	
 
 	//per injection
 	public void setUtenteDAO(UtenteDAO utenteDAO);
+	public void setRuoloDAO(RuoloDAO ruoloDAO);
 
 }

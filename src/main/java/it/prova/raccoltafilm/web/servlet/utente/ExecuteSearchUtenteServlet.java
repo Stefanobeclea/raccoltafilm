@@ -28,7 +28,7 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 		String usernameParam = request.getParameter("username");
 		String dataCreazioneParam = request.getParameter("dataCreazione");
 
-		Utente example = new Utente(nomeParam, cognomeParam, usernameParam,
+		Utente example = new Utente(usernameParam, nomeParam, cognomeParam, 
 				UtilityForm.parseDateArrivoFromString(dataCreazioneParam));
 
 		try {

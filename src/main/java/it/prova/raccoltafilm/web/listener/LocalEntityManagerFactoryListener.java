@@ -69,6 +69,10 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Administrator", "ROLE_ADMIN"));
 		}
+		
+		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Visitor", "ROLE_VISITOR") == null) {
+			ruoloServiceInstance.inserisciNuovo(new Ruolo("Visitor", "ROLE_VISITOR"));
+		}
 
 		if (ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER") == null) {
 			ruoloServiceInstance.inserisciNuovo(new Ruolo("Classic User", "ROLE_CLASSIC_USER"));
@@ -80,6 +84,14 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			utenteServiceInstance.inserisciNuovo(admin);
 			utenteServiceInstance.aggiungiRuolo(admin,
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
+		}
+		
+		if (utenteServiceInstance.findByUsernameAndPassword("visitor", "123") == null) {
+			Utente admin = new Utente("visitor", "123", "Francesco", "Totti", new Date());
+			admin.setStato(StatoUtente.ATTIVO);
+			utenteServiceInstance.inserisciNuovo(admin);
+			utenteServiceInstance.aggiungiRuolo(admin,
+					ruoloServiceInstance.cercaPerDescrizioneECodice("Visitor", "ROLE_VISITOR"));
 		}
 	}
 

@@ -47,7 +47,12 @@
 				  ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
-			    
+				
+				<div class="alert alert-danger alert-dismissible fade show ${messaggio==null?'d-none':'' }" role="alert">
+				  ${messaggio}
+			      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+			       </div>
+			      
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
 				        <h1 class="display-5 fw-bold">Benvenuto alla Raccolta Film</h1>
@@ -63,18 +68,18 @@
 			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
 			      <div class="feature col">
 			        <div class="feature-icon bg-primary bg-gradient">
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+			          <svg class="bi" width="1em" height="1em"><use xlink:href="${pageContext.request.contextPath}/#collection"/></svg>
 			        </div>
 			        <h2>Ricerca Registi</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
 			        <a href="PrepareSearchRegistaServlet" class="icon-link">
 			          Vai alla funzionalità
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+			          <svg class="bi" width="1em" height="1em"><use xlink:href="${pageContext.request.contextPath}/#chevron-right"/></svg>
 			        </a>
 			      </div>
 			      <div class="feature col">
 			        <div class="feature-icon bg-primary bg-gradient">
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
+			          <svg class="bi" width="1em" height="1em"><use xlink:href="${pageContext.request.contextPath}/#people-circle"/></svg>
 			        </div>
 			        <h2>Inserisci Nuovo Regista</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>

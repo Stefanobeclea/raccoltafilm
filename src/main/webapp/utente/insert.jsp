@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -21,6 +23,11 @@
 					  ${errorMessage}
 					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 					</div>
+					
+					<div class="alert alert-danger alert-dismissible fade show ${errorePassword==null?'d-none':'' }" role="alert">
+					  ${errorePassword}
+					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+					</div>
 			  
 			  <div class='card'>
 				    <div class='card-header'>
@@ -31,7 +38,7 @@
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteSearchUtenteServlet" class="row g-3" >
+							<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteInsertUtenteServlet" class="row g-3" >
 							
 							
 								<div class="col-md-6">
@@ -49,16 +56,24 @@
 									<input type="text" class="form-control" name="username" id="username" placeholder="Inserire l'username" value="${insert_utente_attr.username }" >
 								</div>
 								
-								<div class="col-md-3">
-									<label>Data Creazione<span class="text-danger">*</span></label>
-                        			<input class="form-control" id="dataCreazione" type="date" placeholder="dd/MM/yy"
-                            			title="formato : gg/mm/aaaa"  name="dataCreazione"  value="${parsedDate}" >
+								<div class="col-md-6">
+									<label>Password <span class="text-danger">*</span></label>
+									<input type="password" class="form-control" name="password" id="password" placeholder="Inserire la password" value="${insert_utente_attr.password }" >
 								</div>
 								
+								<div class="col-md-6">
+									<label>Conferma Password <span class="text-danger">*</span></label>
+									<input type="password" class="form-control" name="conpassword" id="conpassword" placeholder="Conferma la password" value="${insert_utente_attr.password }" >
+								</div>
+								
+								<div class="col-md-6">
+								<c:forEach items="${ruoli_list_attribute}" var="ruoloItem">
+										<input type="checkbox" name="ruolo" value="${ruoloItem.id}">${ruoloItem.descrizione}<br>
+									</c:forEach>
+								</div>
 								
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 							</div>
 		
 						</form>
@@ -80,3 +95,6 @@
 			<jsp:include page="../footer.jsp" />
 	  </body>
 </html>
+								
+			
+								

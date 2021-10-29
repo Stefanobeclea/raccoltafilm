@@ -29,6 +29,7 @@
               
               <c:if test="${userInfo.isAdmin()}">
               	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/PrepareSearchUtenteServlet">Ricerca Utenti</a></li>
+              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/PrepareInsertUtenteServlet">Inserisci Utenti</a></li>
               </c:if>
             </ul> 
           </li>   
